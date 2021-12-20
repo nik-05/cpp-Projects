@@ -3,29 +3,31 @@
 #include <fstream>
 
 using namespace std;
-
+// Design Class to Provide Design to the Project
 class Design{
     public:
+//     This will Display Welcome Message
     void welcome(){
         std :: cout << "--------------------------------------------------------\n";
         std :: cout << "Welcome to Faculty Feedback form. Enter Your credentials\n";
         std :: cout << "--------------------------------------------------------\n";
     }
-    
+//     It will input Given String between Two Lines
     void box(string line){
         std :: cout << "--------------------------------------------------------\n";
         std :: cout << line << "\n";
         std :: cout << "--------------------------------------------------------\n";
     }
-    
+//     Add Extra Lines
     void addLine(){
         std :: cout << "--------------------------------------------------------\n";
     }
 };
-
+// Admin Class, Contains all Admin Functions
 class Admin: virtual public Design{
     bool isAdmin = false, isLogin = false;
     public:
+//     Check if the User is an Admin
     bool validateUser(string username, string password){
         int count=0;
         fstream newFile;
@@ -52,7 +54,7 @@ class Admin: virtual public Design{
         }
         return false;
     }
-
+// View Feedback Form
     void viewFeedBackForm(){
         fstream newFile;
         newFile.open("questionList.txt", ios_base :: in);
@@ -71,7 +73,7 @@ class Admin: virtual public Design{
             std :: cin >> temp;
         }
     }
-
+// Add questions in the Feedback Form
     void addQuestion(){
         fstream newFile;
         newFile.open("questionList.txt", ios_base :: app);
@@ -104,7 +106,7 @@ class Admin: virtual public Design{
         Design :: addLine();
         std :: cin >> temp;
     }
-
+// Add Teacher to the List
     void addTeacher(){
         fstream newFile;
         newFile.open("teacherlist.txt", ios_base :: app);
@@ -125,7 +127,7 @@ class Admin: virtual public Design{
         
     }
 };
-
+// Student Class, Contains functions of Admin and As well as User
 class Student: public Admin{
     bool isStudent = false, isLogin = false;
     string responses[100];
